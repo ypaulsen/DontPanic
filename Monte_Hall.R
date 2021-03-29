@@ -15,19 +15,23 @@
 
 # The program then samples from "other_doors" to find an empty door to reveal. 
 # Next the program evaluates which door would be switched to if the contestant
-# decided to switch (i.e whichever door is neither the choice door, nor the 
-# empty door revealed).  
+# decided to switch (i.e whichever door is neither the "choice_door", nor the 
+# "empty_door_revealed").  
 
 # If the "switch_to" door is the same as the "winner_door" then the program 
-# records a "switch_win". If the "choice_door" is the same as the "win_door"
-# then the program records a "natural_win".  
+# records a "switch_win"; these are the games that the contestant would win by 
+# switching doors when offered the option. If the "choice_door" is the same as 
+# the "winner_door" then the program records a "natural_win"; these are the 
+# games that would be won by the contestant who decided not to switch when given 
+# the opportunity.    
 
 # Finally this program repeats that procedure 100,000 times to find the 
-# simulated distribution of outcomes, tabulates and outputs the results.  
+# simulated distribution of outcomes, it then tabulates and outputs the results.  
 
 # The outcome here follows the theoretical distribution of wins. In around 67%  
-# of cases, the winning door is the "switch_to" door, and a natural win is 
-# recorded in only around 33% of these trials.   
+# of cases the winning door is the "switch_to" door, and a natural win is 
+# recorded in only around 33% of these trials - those in which the winning door 
+# was chosen on the first guess.   
 
 
 set.seed(1701)
