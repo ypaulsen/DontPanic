@@ -1,3 +1,3 @@
 # DontPanic
 
-This is a folder for fun. 
+This is a place to drop small, fun, and interesting projects. 
