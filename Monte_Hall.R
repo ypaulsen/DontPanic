@@ -5,7 +5,7 @@
 ################################################################################
 ################################################################################
 
-# The following program simulates the famous Monte Hall Paradox using Monte 
+# The following program simulates the famous Monty Hall Paradox using Monte 
 # Carlo methods. It works by creating three doors, sampling one at random for 
 # the winning door, and then sampling from all three again to make a choice for 
 # the simulated contestant. The program then decides which door or doors remain.
@@ -20,10 +20,10 @@
 
 # If the "switch_to" door is the same as the "winner_door" then the program 
 # records a "switch_win"; these are the games that the contestant would win by 
-# switching doors when offered the option. If the "choice_door" is the same as 
-# the "winner_door" then the program records a "natural_win"; these are the 
-# games that would be won by the contestant who decided not to switch when given 
-# the opportunity.    
+# switching doors when offered the option to switch. If the "choice_door" is the
+# same as the "winner_door" then the program records a "natural_win"; these are 
+# the games that would be won by the contestant who decided not to switch when 
+# given the opportunity.    
 
 # Finally this program repeats that procedure 100,000 times to find the 
 # simulated distribution of outcomes, it then tabulates and outputs the results.  
