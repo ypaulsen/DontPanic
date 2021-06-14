@@ -34,19 +34,17 @@
 # was chosen on the first guess.   
 
 
-set.seed(1701)
-n <- 100000
+MC <- 100000
 switch_wins <- c()
 natural_wins <-  c()
 doors <- 1:3
 
-for(i in 1:n) {
+for(i in 1:MC) {
   winner_door <- sample(doors, 1) 
   choice_door <- sample(doors, 1)
   other_doors <- doors[doors != winner_door & doors != choice_door]
-  
-  empty_door_revealed <-  other_doors[sample(length(other_doors), 1)]
-  switch_to <- doors[doors != choice_door & doors != empty_door_revealed]
+  revealed_goat <-  other_doors[sample(length(other_doors), 1)]
+  switch_to <- doors[doors != choice_door & doors != revealed_goat]
   
   # Contestant wins by switching 
   switch_wins[i] <- ifelse(switch_to == winner_door, 1, 0)
