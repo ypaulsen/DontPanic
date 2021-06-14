@@ -48,21 +48,18 @@ for(i in 1:MC) {
   
   # Contestant wins by switching 
   switch_wins[i] <- ifelse(switch_to == winner_door, 1, 0)
-  
   # Contestant wins by not switching     
   natural_wins[i] <- ifelse(choice_door == winner_door, 1, 0)
 }
-
-Pnw <- sum(natural_wins)/length(natural_wins)
-Psw <- sum(switch_wins)/length(switch_wins)
+P_win.natural <- mean(natural_wins)
+P_win.switch <- mean(switch_wins)
 
 # Tabulate results  
-tab <- rbind("Contestant never switches" = round(Pnw,3), 
-             "Contestant always switches" = round(Psw,3))
+tab <- rbind("Contestant never switches" = round(P_win.natural,3), 
+             "Contestant always switches" = round(P_win.switch,3))
 df <- data.frame(tab)
 names(df) <- c("Win percent")
 df
-
 
 ################################################################################
 ################################################################################
