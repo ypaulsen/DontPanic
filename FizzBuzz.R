@@ -9,7 +9,7 @@ for(i in 1:100){
     if (i%%3 == 0) {FizzBuzz1[i] <- "Fizz"} 
     else{
       if (i%%5 == 0) {FizzBuzz1[i] <- "Buzz"}
-    }}
+  }}
 }
 FizzBuzz1
 
