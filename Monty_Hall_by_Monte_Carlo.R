@@ -13,21 +13,14 @@
 # evaluates which door would be switched to if the contestant decided to switch 
 # (i.e whichever door is neither the "choice_door", nor the "revealed_goat").  
 
-# If the "switch_to" door is the same as the "winner_door" the program records a 
-# "switch_win"; these are the games that the contestant would win by changing 
+# If the "switch_to" door is the same as the "winner_door", the program records 
+# a "switch_win"; these are the games that the contestant would win by changing 
 # their choice. If the "original_choice" is the same as the "winner_door" then the 
-# program records a "natural_win"; these are 
-# the games that would be won by the contestant who decided not to switch when 
-# given the opportunity.    
+# program records a "natural_win"; these are the games that would be won by the 
+# contestant who decided not to switch when given the opportunity.    
 
-# Finally this program repeats that procedure 100,000 times to find the 
-# simulated distribution of outcomes, it then tabulates and outputs the results.  
-
-# The outcome here follows the theoretical distribution of wins. In around 67%  
-# of cases the winning door is the "switch_to" door, and a natural win is 
-# recorded in only around 33% of these trials - those in which the winning door 
-# was chosen on the first guess.   
-
+# This program repeats that simulation 100,000 times to find a simulated 
+# distribution of outcomes, it finally tabulates and outputs the results.  
 
 MC <- 100000
 switch_wins <- c()
@@ -55,6 +48,11 @@ tab <- rbind("Contestant never switches" = round(P_win_natural,3),
 df <- data.frame(tab)
 names(df) <- c("Win percent")
 df
+
+# The outcome here follows the theoretical distribution of wins. In around 67%  
+# of cases the winning door is the "switch_to" door, and a natural win is 
+# recorded in only around 33% of these trials - those in which the winning door 
+# was chosen on the first guess. 
 
 ################################################################################
 ################################################################################
