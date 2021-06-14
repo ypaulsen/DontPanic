@@ -8,20 +8,15 @@
 # The following program simulates the famous Monty Hall Paradox using Monte 
 # Carlo methods. It works by creating three doors, sampling one at random for 
 # the winning door, and then sampling from all three again to make a choice for 
-# the simulated contestant. The program then decides which door or doors remain.
-# E.g. If the winning door is 1, and the contestant chooses 1, then 
-# "other_doors" will contain 2 and 3. If the winning door is 1 and the 
-# contestant chooses 2, then "other_doors" will contain only 3. 
+# the simulated contestant. The program then determines which door or doors 
+# remain and samples from "remaining_doors" to find a goat to reveal. Next it 
+# evaluates which door would be switched to if the contestant decided to switch 
+# (i.e whichever door is neither the "choice_door", nor the "revealed_goat").  
 
-# The program then samples from "other_doors" to find an empty door to reveal. 
-# Next the program evaluates which door would be switched to if the contestant
-# decided to switch (i.e whichever door is neither the "choice_door", nor the 
-# "empty_door_revealed").  
-
-# If the "switch_to" door is the same as the "winner_door" then the program 
-# records a "switch_win"; these are the games that the contestant would win by 
-# switching doors when offered the option to switch. If the "choice_door" is the
-# same as the "winner_door" then the program records a "natural_win"; these are 
+# If the "switch_to" door is the same as the "winner_door" the program records a 
+# "switch_win"; these are the games that the contestant would win by changing 
+# their choice. If the "original_choice" is the same as the "winner_door" then the 
+# program records a "natural_win"; these are 
 # the games that would be won by the contestant who decided not to switch when 
 # given the opportunity.    
 
@@ -41,22 +36,22 @@ doors <- 1:3
 
 for(i in 1:MC) {
   winner_door <- sample(doors, 1) 
-  choice_door <- sample(doors, 1)
-  other_doors <- doors[doors != winner_door & doors != choice_door]
-  revealed_goat <-  other_doors[sample(length(other_doors), 1)]
-  switch_to <- doors[doors != choice_door & doors != revealed_goat]
+  original_choice <- sample(doors, 1)
+  remaining_doors <- doors[doors != winner_door & doors != original_choice]
+  revealed_goat <- remaining_doors[sample(length(remaining_doors), 1)]
+  switch_to <- doors[doors != original_choice & doors != revealed_goat]
   
   # Contestant wins by switching 
   switch_wins[i] <- ifelse(switch_to == winner_door, 1, 0)
   # Contestant wins by not switching     
-  natural_wins[i] <- ifelse(choice_door == winner_door, 1, 0)
+  natural_wins[i] <- ifelse(original_choice == winner_door, 1, 0)
 }
-P_win.natural <- mean(natural_wins)
-P_win.switch <- mean(switch_wins)
+P_win_natural <- mean(natural_wins)
+P_win_switch <- mean(switch_wins)
 
 # Tabulate results  
-tab <- rbind("Contestant never switches" = round(P_win.natural,3), 
-             "Contestant always switches" = round(P_win.switch,3))
+tab <- rbind("Contestant never switches" = round(P_win_natural,3), 
+             "Contestant always switches" = round(P_win_switch,3))
 df <- data.frame(tab)
 names(df) <- c("Win percent")
 df
