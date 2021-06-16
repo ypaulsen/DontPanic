@@ -10,11 +10,6 @@ This is just a project I'm working on for fun.
 Create functions: 
 
 ```{r}
-# Function: calculate distance.  
-distance <- function(a,b){
-  sqrt((a[1]-b[1])^2+(a[2]-b[2])^2)
-}
-
 # Function: calculate midpoint. 
 midpoint <- function(a,b){
   mid <- c();
@@ -25,12 +20,14 @@ midpoint <- function(a,b){
 
 # Function: call random vertex.
 ran_vert <- function(sides){
-  sample(letters[1:sides],1)
+z <- sample(sides, 1);
+vertices[[z]]
 }
 ```
 
 Set number of sides. 
-I will build this program with a triangle in mind, but eventually it should be generalizable.  
+I will build this program with a triangle in mind, but eventually it should be generalizable. 
+
 ```{r}
 sides <- 3
 ```
@@ -45,43 +42,33 @@ Y <- c(0,0,3*sqrt(3))
 a <- c(0,0)
 b <- c(6,0)
 c <- c(3,3*sqrt(3))
+vertices <- list(c(0,0), c(6,0), c(3,3*sqrt(3)))
 ```
 
-Eventually, replace starting point with a call to something like `spsample()`
+Eventually, replace starting point (1,1) with a call to something like `spsample()`
 
 ```{r}
-start_point <- c(1,1)
-```
+n <- 10000
+plot_points <- list()
+plot_points[[1]] <- c(1,1)
 
-
-```{r}
-move_to <- sample(letters[1:sides],1)
-new_point <- midpoint(start_point, move_to)
+for(i in 2:n){
+  plot_points[[i]] <- midpoint(plot_points[[i-1]], ran_vert(sides))
+}
+#plot_points
 ```
 
 Pseudocode: 
-
-new point1 = midpoint of start and random vertex
 new point2 = midpoint of new point1 and random vertex 
-iterate 2:N to get remaining points. (N should be large)
+iterate 1:N to get remaining points. (N should be large)
 plot points  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```{r}
+plot(X, Y, pch=20)
+for(i in 1:length(plot_points)){
+points(plot_points[[i]][1], plot_points[[i]][2], pch=20)
+}
+```
 
 
 
