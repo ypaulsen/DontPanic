@@ -5,25 +5,32 @@ date: "6/14/2021"
 output: html_document
 ---
 
+This is just a project I'm working on for fun.  
 
-Create functions to calculate distance and midpoint. 
+Create functions: 
 
 ```{r}
+# Function: calculate distance.  
 distance <- function(a,b){
   sqrt((a[1]-b[1])^2+(a[2]-b[2])^2)
 }
 
+# Function: calculate midpoint. 
 midpoint <- function(a,b){
   mid <- c();
   mid[1] <- (a[1]+b[1])/2;
   mid[2] <- (a[2]+b[2])/2;
   return(mid)
 }
+
+# Function: call random vertex.
+ran_vert <- function(sides){
+  sample(letters[1:sides],1)
+}
 ```
 
 Set number of sides. 
 I will build this program with a triangle in mind, but eventually it should be generalizable.  
-
 ```{r}
 sides <- 3
 ```
@@ -49,9 +56,15 @@ start_point <- c(1,1)
 
 ```{r}
 move_to <- sample(letters[1:sides],1)
+new_point <- midpoint(start_point, move_to)
 ```
 
+Pseudocode: 
 
+new point1 = midpoint of start and random vertex
+new point2 = midpoint of new point1 and random vertex 
+iterate 2:N to get remaining points. (N should be large)
+plot points  
 
 
 
