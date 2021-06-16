@@ -1,0 +1,79 @@
+---
+title: "Sierpinski triangle"
+author: "Y. Paulsen"
+date: "6/14/2021"
+output: html_document
+---
+
+
+Create functions to calculate distance and midpoint. 
+
+```{r}
+distance <- function(a,b){
+  sqrt((a[1]-b[1])^2+(a[2]-b[2])^2)
+}
+
+midpoint <- function(a,b){
+  mid <- c();
+  mid[1] <- (a[1]+b[1])/2;
+  mid[2] <- (a[2]+b[2])/2;
+  return(mid)
+}
+```
+
+Set number of sides. 
+I will build this program with a triangle in mind, but eventually it should be generalizable.  
+
+```{r}
+sides <- 3
+```
+
+Vertices of triangle.   
+Eventually replace with call to random locations. 
+
+```{r}
+X <- c(0,6,3)
+Y <- c(0,0,3*sqrt(3))
+
+a <- c(0,0)
+b <- c(6,0)
+c <- c(3,3*sqrt(3))
+```
+
+Eventually, replace starting point with a call to something like `spsample()`
+
+```{r}
+start_point <- c(1,1)
+```
+
+
+```{r}
+move_to <- sample(letters[1:sides],1)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
