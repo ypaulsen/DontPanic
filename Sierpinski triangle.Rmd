@@ -5,14 +5,17 @@ date: "6/14/2021"
 output: html_document
 ---
 
-The Sierpinski Triangle is a well known fractal 
+The Sierpinski Triangle is a well known fractal... 
 
+The chaos game is...
 
-Pseudocode: 
-new point2 = midpoint of new point1 and random vertex 
-iterate 1:N to get remaining points. (N should be large)
-plot points  
+Pseudocode:
+create new_point_1
+new_point_2 = midpoint of new_point_1 and a random vertex    
+iterate N-times to get points. (N should be large)    
+plot points     
 
+   
 Set number of sides. 
 I will build this program with a triangle in mind, but eventually it should generalize. 
 
@@ -21,7 +24,7 @@ sides <- 3
 ```
 
 Vertices of triangle.   
-Eventually replace with call to random locations. 
+Eventually replace with call to random locations?   
 
 ```{r}
 X <- c(0,6,3)
@@ -42,7 +45,7 @@ midpoint <- function(a,b){
 }
 
 # Function: call random vertex.
-ran_vert <- function(sides){
+ran_vert <- function(sides, vertices){
   z <- sample(sides, 1);
   vertices[[z]]
 }
@@ -51,15 +54,19 @@ ran_vert <- function(sides){
 
 
 ```{r}
+# Set parameters    
+par(mar=c(0,0,0,0), pty="s")   
 n <- 10000
 plot_points <- list()
 plot_points[[1]] <- c(.65,.65)        # Replace starting point with a call to something like `spsample()`
 
+# Generate points to plot  
 for(i in 2:n){
-  plot_points[[i]] <- midpoint(plot_points[[i-1]], ran_vert(sides))
+  plot_points[[i]] <- midpoint(plot_points[[i-1]], ran_vert(sides, vertices))
 }
 
-plot(X, Y, pch=17)
+# Plot points   
+plot(X, Y, pch=17, yaxt="n", ylab="", xaxt='n', xlab = "")
 for(i in 1:length(plot_points)){
   points(plot_points[[i]][1], plot_points[[i]][2], pch=17)
 }
