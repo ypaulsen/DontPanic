@@ -5,7 +5,30 @@ date: "6/14/2021"
 output: html_document
 ---
 
-This is just a project I'm working on for fun.  
+The Sierpinski Triangle is a well known fractal 
+
+
+Pseudocode: 
+new point2 = midpoint of new point1 and random vertex 
+iterate 1:N to get remaining points. (N should be large)
+plot points  
+
+Set number of sides. 
+I will build this program with a triangle in mind, but eventually it should generalize. 
+
+```{r}
+sides <- 3
+```
+
+Vertices of triangle.   
+Eventually replace with call to random locations. 
+
+```{r}
+X <- c(0,6,3)
+Y <- c(0,0,3*sqrt(3))
+
+vertices <- list(c(0,0), c(6,0), c(3,3*sqrt(3)))
+```
 
 Create functions: 
 
@@ -20,53 +43,25 @@ midpoint <- function(a,b){
 
 # Function: call random vertex.
 ran_vert <- function(sides){
-z <- sample(sides, 1);
-vertices[[z]]
+  z <- sample(sides, 1);
+  vertices[[z]]
 }
 ```
 
-Set number of sides. 
-I will build this program with a triangle in mind, but eventually it should be generalizable. 
 
-```{r}
-sides <- 3
-```
-
-Vertices of triangle.   
-Eventually replace with call to random locations. 
-
-```{r}
-X <- c(0,6,3)
-Y <- c(0,0,3*sqrt(3))
-
-a <- c(0,0)
-b <- c(6,0)
-c <- c(3,3*sqrt(3))
-vertices <- list(c(0,0), c(6,0), c(3,3*sqrt(3)))
-```
-
-Eventually, replace starting point (1,1) with a call to something like `spsample()`
 
 ```{r}
 n <- 10000
 plot_points <- list()
-plot_points[[1]] <- c(1,1)
+plot_points[[1]] <- c(.65,.65)        # Replace starting point with a call to something like `spsample()`
 
 for(i in 2:n){
   plot_points[[i]] <- midpoint(plot_points[[i-1]], ran_vert(sides))
 }
-#plot_points
-```
 
-Pseudocode: 
-new point2 = midpoint of new point1 and random vertex 
-iterate 1:N to get remaining points. (N should be large)
-plot points  
-
-```{r}
-plot(X, Y, pch=20)
+plot(X, Y, pch=17)
 for(i in 1:length(plot_points)){
-points(plot_points[[i]][1], plot_points[[i]][2], pch=20)
+  points(plot_points[[i]][1], plot_points[[i]][2], pch=17)
 }
 ```
 
