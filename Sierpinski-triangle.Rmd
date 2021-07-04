@@ -15,7 +15,7 @@ The Chaos Game, in its simplest form, uses random sampling from uniform distribu
 2. generate new_point_1 within the triangle by random sampling
 3. new_point_2 = midpoint(new_point_1, a randomly chosen vertex of the triangle)
 4. new_point_3 = midpoint(new_point_2, a randomly chosen vertex of the triangle)
-5. iterate Step 3 to get \(N\) points within the triangle; \(N\) should be large
+5. iterate Step 4 to get \(N\) points within the triangle; \(N\) should be large
 6. plot the points - they will describe a Sierpinski Triangle.     
     
 Below is R code that generates the fractal by playing the Chaos Game. The basic idea of the program follows the pseudocode above.  
