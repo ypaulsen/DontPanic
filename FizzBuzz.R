@@ -34,8 +34,24 @@ FizzBuzz3[z] <- "Fizz Buzz"
 FizzBuzz3
 
 
-FizzBuzz1 == FizzBuzz2
+fizzbuzz <- function(x){
+  for(i in 1:length(x)){
+    if(i%%15==0){
+      x[i] <- "FizzBuzz"
+    } else {
+      if(i%%3==0){
+        x[i] <- "Fizz"
+      } else {
+        if(i%%5==0){
+          x[i] <- "Buzz"
+        }
+      }
+    }
+  }
+  return(x)
+}
 
-FizzBuzz2 == FizzBuzz3
+FizzBuzz4 <- fizzbuzz(1:100)
 
-FizzBuzz1 == FizzBuzz3
+
+
